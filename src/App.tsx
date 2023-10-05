@@ -11,21 +11,19 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<User>();
     
-    useEffect(() => {
-        (async() => {
-            const nextUsers = await getUsers();
-            const nextPRofile = createUser(PROFIL_ID)
+  useEffect(() => {
+      (async() => {
+          const nextUsers = await getUsers();
+          const nextPRofile = createUser(PROFIL_ID)
+          setUsers(nextUsers);
+          setProfile(nextPRofile);
+          setLoading(false);
+      })();
+  }, []);
 
-            setUsers(nextUsers);
-            setProfile(nextPRofile);
-            setLoading(false);
-            console.log(users);
-        })();
-    }, []);
-
-    if(loading){
-      return <div>loading</div>
-    }
+  if(loading){
+    return <div>loading</div>
+  }
   return (
     <>
       <AppContainer>

@@ -7,19 +7,21 @@ type Props = {
 }
 
 const UserList = ({users, onClick}: Props) => {
+    const test = users.map(({name, avatar, id}) => {
+        return <div>{name}</div>
+    })
+
     return (
         <>
-        {
-        users.map(({name, avatar, id}) => {
-            <UserItem
-                key={id}
-                avatar={avatar}
-                name={name}
-                onClick={() => onClick({name, avatar, id})}
-            />
-            })
-        }
-        
+            {users.map(({name, avatar, id}) => {
+                return <UserItem
+                    key={id}
+                    avatar={avatar}
+                    name={name}
+                    onClick={() => onClick({name, avatar, id})}
+                />
+                })
+            }
         </>
     );
 }
