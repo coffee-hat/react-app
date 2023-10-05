@@ -26,10 +26,9 @@ const Container = styled.div`
     border-radius : 0.25rem;
     transition: background-color 0.1s ease-in-out;
     &:hover {
-        background-color: #fafafa;
+        background-color: #36373d;
     }
 `
-
 
 const Avatar = styled.img`
     height: 2rem;

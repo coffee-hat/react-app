@@ -11,7 +11,7 @@ export const createUser = (id: number) => ({
 });
 
 export async function getUsers() {
-    const usersId = Array.from(Array(5).keys());
+    const usersId = Array.from(Array(50).keys());
 
     await delay(500);
 

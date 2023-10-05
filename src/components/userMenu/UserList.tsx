@@ -1,4 +1,4 @@
-import { User } from '../modeles/User';
+import { User } from '../../modeles/User';
 import UserItem from './UserItem';
 
 type Props = {

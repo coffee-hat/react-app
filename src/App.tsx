@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react'
 import { User } from './modeles/User';
 import { createUser, getUsers } from './services/api';
-import UserList from './components/UserList';
 import styled from '@emotion/styled';
+import UserMenu from './components/UserMenu';
+import ChatMenu from './components/ChatMenu';
 
 const PROFIL_ID = 999;
 
 export default function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState<User>();
+  const [profil, setProfil] = useState<User>({id:0, name: '', avatar: ''});
     
   useEffect(() => {
       (async() => {
           const nextUsers = await getUsers();
-          const nextPRofile = createUser(PROFIL_ID)
+          const nextProfil = createUser(PROFIL_ID)
           setUsers(nextUsers);
-          setProfile(nextPRofile);
+          setProfil(nextProfil);
           setLoading(false);
       })();
   }, []);
@@ -27,12 +28,12 @@ export default function App() {
   return (
     <>
       <AppContainer>
-        <UserListContainer>
-          <UserList users={users} onClick={console.log}/>
-        </UserListContainer>
-        <ChatContainer>
-          Chat
-        </ChatContainer>
+        <UserMenuContainer>
+          <UserMenu users={users} profil={profil}/>
+        </UserMenuContainer>
+        <ChatMenuContainer>
+          <ChatMenu/>
+        </ChatMenuContainer>
       </AppContainer>
     </>
   )
@@ -40,19 +41,12 @@ export default function App() {
 
 const AppContainer = styled.div`
   diplay: flex;
+  flex-direction: row;
 `
 
-const UserListContainer = styled.div`
-  width: 16rem;
-  border-right: 1px solid #bdbdbd;
-  height: 100vh;
-  overflow-y: scroll;
+const UserMenuContainer = styled.div`
+    border: solid red;
 `
-const ProfileContainer = styled.div`
-  position : fixed;
-  bottom: 0;
-`
-
-const ChatContainer = styled.div`
-  flex: 1;
+const ChatMenuContainer = styled.div`
+    border: solid green;
 `
