@@ -40,13 +40,14 @@ export default function App() {
 }
 
 const AppContainer = styled.div`
-  diplay: flex;
+  display: inline-flex;
   flex-direction: row;
 `
 
 const UserMenuContainer = styled.div`
-    border: solid red;
 `
 const ChatMenuContainer = styled.div`
-    border: solid green;
+    
+    display: flex;
+    flex-direction: column;
 `
