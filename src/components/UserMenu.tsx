@@ -15,11 +15,12 @@ const UserMenu = ({users, profil}: Props) => {
 
     const handleInputChange = (e: { target: { value: string; }; }) => {
         setFilteredUsers([]);
+        console.log(e.target.value);
         setInputSearch(e.target.value);
         let usersToDisplay: User[] = [];
 
         users.forEach(user => {
-            if(user.name.toLowerCase().indexOf(inputSearch.toLowerCase()) > -1){
+            if(user.name.toLowerCase().includes(inputSearch.toLowerCase())){
                 usersToDisplay.push(user);
                 
             }
@@ -43,14 +44,10 @@ const UserMenu = ({users, profil}: Props) => {
     );
 }
 
-
-
 const SearchBarContainer = styled.div`
-    display: flex;
     justify-content: center;
     width: 16rem;
-    position : fixed;
-    up: 0;
+    height: 5rem;
     border-bottom: solid #1f2023 1px;
     background-color: #2b2d31;
     input {
@@ -62,15 +59,14 @@ const SearchBarContainer = styled.div`
 `
 
 const UserListContainer = styled.div`
+    flex(1);
     width: 16rem;
     border-right: 1px solid #bdbdbd;
-    overflow-y: hidden;
+    overflow-y: scroll;
     background-color: #2b2d31;
 `
 const ProfilContainer = styled.div`
     width: 16rem;
-    position : fixed;
-    bottom: 0;
     background-color: #232428;
 `
 

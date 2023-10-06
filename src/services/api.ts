@@ -10,10 +10,25 @@ export const createUser = (id: number) => ({
     avatar: faker.image.avatar(),
 });
 
+export const createMsg = (id: number, userId: number) => ({
+    id,
+    userId,
+    msg: faker.lorem.lines({ min: 1, max: 3 }),
+    date: faker.date.anytime(),
+});
+
 export async function getUsers() {
-    const usersId = Array.from(Array(50).keys());
+    const usersId = Array.from(Array(5).keys());
 
     await delay(500);
 
     return usersId.map(createUser);
+}
+
+export async function getMessages(numberOfMesg: number) {
+    const msgId = Array.from(Array(numberOfMesg).keys());
+
+    await delay(500);
+
+    return msgId.map(createMsg);
 }

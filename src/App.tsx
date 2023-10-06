@@ -11,7 +11,9 @@ export default function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [profil, setProfil] = useState<User>({id:0, name: '', avatar: ''});
-    
+
+  const [selectedUserID, setSelectedUserID] = useState<number>(-1);
+
   useEffect(() => {
       (async() => {
           const nextUsers = await getUsers();
@@ -32,7 +34,7 @@ export default function App() {
           <UserMenu users={users} profil={profil}/>
         </UserMenuContainer>
         <ChatMenuContainer>
-          <ChatMenu/>
+          <ChatMenu currentUser={users[2]} profil={profil}/>
         </ChatMenuContainer>
       </AppContainer>
     </>
@@ -40,14 +42,16 @@ export default function App() {
 }
 
 const AppContainer = styled.div`
+  height: 100vh;
   display: inline-flex;
   flex-direction: row;
 `
 
 const UserMenuContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 const ChatMenuContainer = styled.div`
-    
     display: flex;
     flex-direction: column;
 `
