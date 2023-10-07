@@ -11,8 +11,13 @@ const ChatItem = ({user, message}: Props) => {
     return (
         <Container>
             <Avatar src={user.avatar}/>
-            <div>{message.msg}</div>
-            <DateMsg>{message.date.toString()}</DateMsg>
+            <TextContainer>
+                <MessageInfo>
+                    <div>{user.name}</div>
+                    <DateMsg>{message.date.getDate()}</DateMsg>
+                </MessageInfo>
+                <div>{message.msg}</div>
+            </TextContainer>
         </Container>
     );
 }
@@ -35,6 +40,16 @@ const Avatar = styled.img`
     height: 2rem;
     width: 2rem;
     border-radius: 2rem;
+`
+
+const TextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+const MessageInfo = styled.div`
+    display: flex;
+    gap: 1em;
 `
 
 const DateMsg = styled.div`

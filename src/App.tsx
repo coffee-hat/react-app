@@ -1,28 +1,17 @@
-import { useEffect, useState } from 'react'
-import { User } from './modeles/User';
-import { createUser, getUsers } from './services/api';
+import { createContext, useState } from 'react'
 import styled from '@emotion/styled';
 import UserMenu from './components/UserMenu';
 import ChatMenu from './components/ChatMenu';
-
-const PROFIL_ID = 999;
+import { useUser } from './hooks/useUser';
+import { User } from './modeles/User';
 
 export default function App() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [profil, setProfil] = useState<User>({id:0, name: '', avatar: ''});
-
-  const [selectedUserID, setSelectedUserID] = useState<number>(-1);
-
-  useEffect(() => {
-      (async() => {
-          const nextUsers = await getUsers();
-          const nextProfil = createUser(PROFIL_ID)
-          setUsers(nextUsers);
-          setProfil(nextProfil);
-          setLoading(false);
-      })();
-  }, []);
+  const [selectedUser, setSelectedUser] = useState<User>();
+  const { users, profil, loading } = useUser();
+  
+  const handleClick = (id: number) => {
+    setSelectedUser(users[id]);
+  }
 
   if(loading){
     return <div>loading</div>
@@ -31,10 +20,10 @@ export default function App() {
     <>
       <AppContainer>
         <UserMenuContainer>
-          <UserMenu users={users} profil={profil}/>
+          <UserMenu users={users} profil={profil} onClick={handleClick}/>
         </UserMenuContainer>
         <ChatMenuContainer>
-          <ChatMenu currentUser={users[2]} profil={profil}/>
+          <ChatMenu currentUser={selectedUser} profil={profil}/>
         </ChatMenuContainer>
       </AppContainer>
     </>

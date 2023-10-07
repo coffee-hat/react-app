@@ -3,7 +3,7 @@ import UserItem from './UserItem';
 
 type Props = {
     users: User[];
-    onClick: (user: User) => void;
+    onClick: (id: number) => void;
 }
 
 const UserList = ({users, onClick}: Props) => {
@@ -18,7 +18,7 @@ const UserList = ({users, onClick}: Props) => {
                     key={id}
                     avatar={avatar}
                     name={name}
-                    onClick={() => onClick({name, avatar, id})}
+                    onClick={() => onClick(id)}
                 />
                 })
             }

@@ -7,15 +7,15 @@ import { useState } from "react";
 type Props = {
     users: User[];
     profil: User;
+    onClick: (id: number) => void;
 }
 
-const UserMenu = ({users, profil}: Props) => {
+const UserMenu = ({users, profil, onClick}: Props) => {
     const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
     const [inputSearch, setInputSearch] = useState<string>("");
 
     const handleInputChange = (e: { target: { value: string; }; }) => {
         setFilteredUsers([]);
-        console.log(e.target.value);
         setInputSearch(e.target.value);
         let usersToDisplay: User[] = [];
 
@@ -26,7 +26,13 @@ const UserMenu = ({users, profil}: Props) => {
             }
         });
         
-        setFilteredUsers(usersToDisplay);
+        if(e.target.value != ''){
+            setFilteredUsers(usersToDisplay);
+        }
+        else{
+            setFilteredUsers(users);
+        }
+        
     };
 
     return (
@@ -35,7 +41,7 @@ const UserMenu = ({users, profil}: Props) => {
                 <input type="text" value={inputSearch} onChange={handleInputChange}></input>
             </SearchBarContainer>
             <UserListContainer>
-                <UserList users={filteredUsers} onClick={console.log}/>
+                <UserList users={filteredUsers} onClick={onClick}/>
             </UserListContainer>
             <ProfilContainer>
                 <Profil profil={profil} onClick={console.log}/>
@@ -45,21 +51,22 @@ const UserMenu = ({users, profil}: Props) => {
 }
 
 const SearchBarContainer = styled.div`
+    display: flex;
     justify-content: center;
     width: 16rem;
-    height: 5rem;
+    height: 3rem;
     border-bottom: solid #1f2023 1px;
     background-color: #2b2d31;
     input {
         background-color: #1e1f22;
-        border-radius : 0.25rem;
         color: #73797f;
-        margin: 0.8rem auto;
+        height: 1.5rem;
+        margin: auto;
     }
 `
 
 const UserListContainer = styled.div`
-    flex(1);
+    flex: 1;
     width: 16rem;
     border-right: 1px solid #bdbdbd;
     overflow-y: scroll;
