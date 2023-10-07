@@ -18,7 +18,7 @@ export const createMsg = (id: number, userId: number) => ({
 });
 
 export async function getUsers() {
-    const usersId = Array.from(Array(5).keys());
+    const usersId = Array.from(Array(20).keys());
 
     await delay(500);
 

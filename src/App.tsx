@@ -32,8 +32,7 @@ export default function App() {
 
 const AppContainer = styled.div`
   height: 100vh;
-  display: inline-flex;
-  flex-direction: row;
+  display: flex;
 `
 
 const UserMenuContainer = styled.div`

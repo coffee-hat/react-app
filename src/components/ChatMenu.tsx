@@ -53,9 +53,7 @@ const ChatListContainer = styled.div`
 `
 
 const ChatInputContainer = styled.div`
-    display: flex;
-    justify-content: center;
-    height: 10rem;
+    height: 6rem;
     background-color: #313338;
 `
 

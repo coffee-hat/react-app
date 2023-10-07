@@ -9,13 +9,14 @@ const ChatInput = () => {
 }
 
 const InputContainer = styled.div`
-    margin: auto;
+    display: flex;
     input {
-        background-color: #1e1f22;
-        color: #73797f;
-        width: 28rem;
-        height: 1.5rem;
+        background-color: #383a40;
+        width: 96%;
+        height: 2rem;
         margin: auto;
+        border-radius: 8px;
+        border: none;
     }
 `
 

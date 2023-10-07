@@ -52,16 +52,15 @@ const UserMenu = ({users, profil, onClick}: Props) => {
 
 const SearchBarContainer = styled.div`
     display: flex;
-    justify-content: center;
-    width: 16rem;
-    height: 3rem;
-    border-bottom: solid #1f2023 1px;
     background-color: #2b2d31;
+    border-bottom: solid #1f2023 1px;
     input {
         background-color: #1e1f22;
-        color: #73797f;
+        width: 90%;
         height: 1.5rem;
-        margin: auto;
+        margin: 0.6rem auto;
+        border-radius: 8px;
+        border: none;
     }
 `
 
