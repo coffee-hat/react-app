@@ -4,10 +4,9 @@ import { BsFillMicFill, BsHeadphones, BsGearFill } from "react-icons/bs";
 
 type Props = {
     profil: User;
-    onClick: (msg: string) => void;
 }
 
-const Profil = ({profil, onClick}: Props) => {
+const Profil = ({profil}: Props) => {
     return (
         <>
             <Container>

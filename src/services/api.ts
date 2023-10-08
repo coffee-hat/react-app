@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { Message } from '../modeles/Message';
 
 const delay = (time: number) => {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -10,10 +11,10 @@ export const createUser = (id: number) => ({
     avatar: faker.image.avatar(),
 });
 
-export const createMsg = (id: number, userId: number) => ({
+export const createMessage = (id: number, userId: number, msg: string): Message => ({
     id,
-    userId,
-    msg: faker.lorem.lines({ min: 1, max: 3 }),
+    userId: userId,
+    msg: msg,
     date: faker.date.anytime(),
 });
 
@@ -25,11 +26,17 @@ export async function getUsers() {
     return usersId.map(createUser);
 }
 
-export async function getMessages(contactId: number, profilId: number) {
+export async function getMessages(contactId: number): Promise<Message[]> {
     const numberOfMesg = 20;
     const msgId = Array.from(Array(numberOfMesg).keys());
 
     await delay(500);
 
-    return msgId.map(createMsg);
+    return msgId.map(id => <Message>{
+        id: id,
+        userId: contactId,
+        msg: faker.lorem.sentences({min: 1, max: 3}),
+        date: faker.date.anytime(),
+    });
+
 }

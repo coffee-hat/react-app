@@ -15,7 +15,7 @@ const ChatMenu = ({currentUser, profil}: Props) => {
     if(currentUser == null){
         return <div>MessageList</div>
     }
-    const { messages, loading } = useMessages(currentUser);
+    const { messages, addMessage, loading } = useMessages(currentUser);
 
     return (
         <>
@@ -28,11 +28,13 @@ const ChatMenu = ({currentUser, profil}: Props) => {
             </ChatToolsBar>
             <ChatListContainer>
                 <ChatList 
-                    currentUser={currentUser} 
-                    messages={messages}/>
+                    currentUser={currentUser}
+                    profil={profil} 
+                    messages={messages}
+                    loading={loading}/>
             </ChatListContainer>
             <ChatInputContainer>
-                <ChatInput/>
+                <ChatInput addMessage={addMessage}/>
             </ChatInputContainer>
         </>
     );
@@ -44,21 +46,17 @@ const ChatToolsBar = styled.div`
     height: 3rem;
     border-bottom: solid var(--dark-gray) 1px;
     background-color: var(--chat-gray);
-    div {
-        
-    }
 `
 
 const ChatListContainer = styled.div`
     flex: 1;
-    overflow-y: hidden;
+    overflow-y: scroll;
     background-color: var(--chat-gray);
-    &:hover {
-        overflow-y: scroll;
-    }
 `
 
 const ChatInputContainer = styled.div`
+    display: flex;
+    padding: 0 1rem;
     height: 4rem;
     background-color: var(--chat-gray);
 `

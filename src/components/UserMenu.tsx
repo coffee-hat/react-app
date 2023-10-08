@@ -44,7 +44,7 @@ const UserMenu = ({users, profil, onClick}: Props) => {
                 <UserList users={filteredUsers} onClick={onClick}/>
             </UserListContainer>
             <ProfilContainer>
-                <Profil profil={profil} onClick={console.log}/>
+                <Profil profil={profil}/>
             </ProfilContainer>
         </>
     );

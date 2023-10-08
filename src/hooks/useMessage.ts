@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMessages } from "../services/api";
+import { createMessage, getMessages } from "../services/api";
 import { Message } from "../modeles/Message";
 import { User } from "../modeles/User";
 
@@ -11,11 +11,20 @@ export const useMessages = (contact: User) => {
 
     useEffect(() => {
         (async() => {
-            const nextMessages = await getMessages(contact.id, PROFIL_ID);
+            const nextMessages = await getMessages(contact.id);
             setMessages(nextMessages);
             setLoading(false);
         })();
     }, [contact]);
 
-    return {messages, loading}
+    const addMessage = (newMessage: string) =>{
+        setLoading(false);
+        let newMessageList = messages;
+        newMessageList.push(createMessage(messages[messages.length - 1].id + 1, PROFIL_ID, newMessage));
+        setMessages(newMessageList);
+        console.log(messages)
+        setLoading(true);
+    }
+
+    return {messages, addMessage, loading}
 }
