@@ -25,7 +25,8 @@ export async function getUsers() {
     return usersId.map(createUser);
 }
 
-export async function getMessages(numberOfMesg: number) {
+export async function getMessages(contactId: number, profilId: number) {
+    const numberOfMesg = 20;
     const msgId = Array.from(Array(numberOfMesg).keys());
 
     await delay(500);

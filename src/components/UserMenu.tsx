@@ -52,13 +52,14 @@ const UserMenu = ({users, profil, onClick}: Props) => {
 
 const SearchBarContainer = styled.div`
     display: flex;
-    background-color: #2b2d31;
-    border-bottom: solid #1f2023 1px;
+    height: 3rem;
+    background-color: var(--contact-gray);
+    border-bottom: solid var(--dark-gray) 1px;
     input {
-        background-color: #1e1f22;
+        background-color: var(--dark-gray);
         width: 90%;
         height: 1.5rem;
-        margin: 0.6rem auto;
+        margin: auto;
         border-radius: 8px;
         border: none;
     }
@@ -67,13 +68,15 @@ const SearchBarContainer = styled.div`
 const UserListContainer = styled.div`
     flex: 1;
     width: 16rem;
-    border-right: 1px solid #bdbdbd;
-    overflow-y: scroll;
-    background-color: #2b2d31;
+    overflow-y: hidden;
+    background-color: var(--contact-gray);
+    &:hover {
+        overflow-y: scroll;
+    }
 `
 const ProfilContainer = styled.div`
     width: 16rem;
-    background-color: #232428;
+    background-color: var(--profil-gray);
 `
 
 export default UserMenu;

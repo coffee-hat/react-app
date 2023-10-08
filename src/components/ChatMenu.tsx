@@ -3,6 +3,7 @@ import ChatList from "./chatMenu/ChatList";
 import ChatInput from "./chatMenu/ChatInput";
 import { User } from "../modeles/User";
 import { useMessages } from "../hooks/useMessage";
+import UserItem from "./userMenu/UserItem";
 
 type Props = {
     currentUser: User | undefined,
@@ -10,51 +11,56 @@ type Props = {
 }
 
 const ChatMenu = ({currentUser, profil}: Props) => {
-
-    const { messages, loading } = useMessages();
-
-    let chatDisplay = null;
-    if(loading){
-        chatDisplay = <div>loading</div>
+    
+    if(currentUser == null){
+        return <div>MessageList</div>
     }
-    else if(currentUser == null){
-        chatDisplay = <div>CHAT LIST</div>
-    }
-    else{
-        chatDisplay = <>
+    const { messages, loading } = useMessages(currentUser);
+
+    return (
+        <>
+            <ChatToolsBar>
+                <div>
+                    <UserItem 
+                        avatar={currentUser.avatar} 
+                        name={currentUser.name}/>
+                </div>
+            </ChatToolsBar>
             <ChatListContainer>
-                <ChatList currentUser={currentUser} messagesList={messages}/>
+                <ChatList 
+                    currentUser={currentUser} 
+                    messages={messages}/>
             </ChatListContainer>
             <ChatInputContainer>
                 <ChatInput/>
             </ChatInputContainer>
-        </>
-    }
-    return (
-        <>
-            <ChatToolsBar>
-                TOOLS BARS
-            </ChatToolsBar>
-            {chatDisplay}
         </>
     );
 }
 
 const ChatToolsBar = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: left;
     height: 3rem;
-    border-bottom: solid #1f2023 1px;
+    border-bottom: solid var(--dark-gray) 1px;
+    background-color: var(--chat-gray);
+    div {
+        
+    }
 `
 
 const ChatListContainer = styled.div`
-    overflow-y: scroll;
-    background-color: #313338;
+    flex: 1;
+    overflow-y: hidden;
+    background-color: var(--chat-gray);
+    &:hover {
+        overflow-y: scroll;
+    }
 `
 
 const ChatInputContainer = styled.div`
-    height: 6rem;
-    background-color: #313338;
+    height: 4rem;
+    background-color: var(--chat-gray);
 `
 
 export default ChatMenu;

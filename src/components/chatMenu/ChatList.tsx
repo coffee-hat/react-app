@@ -3,14 +3,14 @@ import { User } from "../../modeles/User";
 import ChatItem from "./ChatItem";
 
 type Props = {
-    currentUser: User,
-    messagesList: Message[],
+    currentUser : User,
+    messages: Message[]
 }
 
-const ChatList = ({currentUser, messagesList}: Props) => {
+const ChatList = ({currentUser, messages}: Props) => {
     return (
         <>
-            {messagesList.map((message) => {
+            {messages.map((message) => {
                 return <ChatItem
                     key={message.id}
                     user={currentUser}
